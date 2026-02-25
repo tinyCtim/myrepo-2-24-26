@@ -1,0 +1,72 @@
+ Volume in drive C is OS
+ Volume Serial Number is B6FB-C4E1
+
+ Directory of C:\Users\LeeB\Documents\GitHub\myrepo-2-24-26
+
+02/25/2026  07:33 AM    <DIR>          .
+02/24/2026  10:19 AM    <DIR>          ..
+01/29/2025  10:02 AM             1,255 alanna3a.tc
+02/24/2026  05:45 AM               738 approx.c
+02/24/2026  05:49 AM            41,363 approx.exe
+02/23/2026  10:06 AM           111,994 approx.jpg
+09/28/2025  08:46 PM             3,762 concen.tc
+10/16/2025  01:40 PM               855 contingency.tc
+03/06/2025  05:51 AM               566 diameter.tc
+08/19/2025  07:37 AM               348 dir.tc
+02/25/2026  07:33 AM                 0 dir.txt
+11/15/2024  02:00 PM               202 dir_try.tc
+11/14/2024  08:09 AM             1,773 double.tc
+07/27/2025  02:34 PM            42,643 factor.exe
+03/15/2025  03:02 PM               846 factor.tc
+08/01/2025  11:09 AM             1,073 factor_8_1_25.tc
+07/28/2025  05:12 AM               989 factor_try.tc
+08/15/2025  06:43 AM                19 foo.tc
+11/12/2024  08:04 AM             3,830 four_way.tc
+03/07/2025  10:17 AM               814 frequency.1.tc
+02/19/2025  08:09 AM               679 frequency.tc
+12/13/2024  09:47 AM             2,504 fri13.tc
+11/14/2024  08:09 AM             2,155 give.a.dollar.try.2.tc
+12/12/2024  07:05 AM               845 graph.11.27.24.tc
+12/12/2024  07:35 AM               839 graph.try.tc
+12/13/2025  09:25 AM           593,072 how is the famous house problem related to continued fractions - Google Search.pdf
+07/19/2025  05:10 PM                27 lillib.tc
+09/04/2025  07:27 AM               304 liltest.tc
+07/16/2025  04:19 AM             1,325 locker.tc
+07/19/2025  04:29 PM             1,644 lrblib.tc
+01/15/2025  08:28 AM               402 madeline.investigate.tc
+11/16/2024  05:12 AM               676 madeline.tbo.tc
+11/15/2024  02:16 PM               580 madeline.tc
+12/26/2025  02:27 PM             2,941 mar09.dic
+10/18/2024  01:40 PM             2,999 matched_pair.tc
+11/14/2024  06:59 AM             1,207 md.tc
+08/15/2025  07:09 AM             1,773 morse.9.12.21.tc
+01/29/2025  10:02 AM             1,804 morse.tc
+09/23/2025  09:03 AM             1,200 mult.tc
+09/25/2025  11:56 AM             1,403 multc.tc
+09/22/2025  07:29 AM               760 multcbcr.tc
+09/25/2025  09:46 PM             2,371 multd.tc
+09/23/2025  07:20 AM               361 multlb.tc
+02/25/2026  06:33 AM             2,975 muzzy.333.jpg
+02/18/2026  05:43 PM             6,587 nihilator.html
+06/01/2025  06:14 PM               332 pal.tc
+06/06/2025  02:34 PM               229 pal1.tc
+02/25/2026  07:10 AM    <DIR>          pps
+11/14/2024  06:59 AM               896 rdump.tc
+12/21/2025  06:00 AM             6,456 roman.2.12.22.tc
+01/29/2025  10:02 AM             1,549 secondchance.2.11.23.2.tc
+12/07/2024  06:07 PM               265 sec_to_dec.tc
+01/17/2026  06:10 PM             1,655 slow_fast.c
+01/17/2026  06:11 PM            41,362 slow_fast.exe
+02/25/2026  06:33 AM            65,935 star_mosiac.jpg
+09/29/2025  05:59 AM           183,736 tc.exe
+01/29/2025  10:02 AM             1,055 testpos.tc
+01/29/2025  10:02 AM               651 testpospi.tc
+11/15/2024  11:37 AM             6,188 tree-128.tc
+11/23/2025  07:02 AM             1,154 two.tc
+11/23/2025  05:11 AM             1,019 two_early.tc
+11/14/2024  08:09 AM               708 url.2.tc
+01/29/2025  10:02 AM             2,870 ver.amy.tc
+09/22/2025  07:08 AM                23 x.tc
+12/21/2025  12:53 PM             1,788 xmas.tc
+              62 File(s)      1,162,374 bytes
+               3 Dir(s)  95,732,035,584 bytes free

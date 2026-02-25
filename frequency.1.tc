@@ -1,0 +1,28 @@
+#include pps/library.tc
+#include pps/lrblib.tc
+
+/* This program reads a text file supplied by the user and outputs the frequency */
+/* of each lowercase letter used. */
+
+/* frequency.tc - 2/19/25 - lrb */
+/* file input and lowercase - 2/20/25 */
+/* abort if there's an error on the read - 3/7/25 */
+
+main [
+	char file(30)
+	pl "";pl "frequency.1.tc - lrb - 3/7/25";pl "";pl ""
+	pl "file to read? ";gs file
+	char buffer(65000)
+	int bytes
+	int counts(25),letter
+	bytes=readfile file,buffer,65000
+	if bytes==0 [pl "error on read";abort]
+	tolower(buffer)
+	printf "%d bytes read%c%c",bytes,10,10
+	while (letter<=25) [
+		counts(letter)=countch buffer,buffer+bytes,'a'+letter
+		putchar 'a'+letter;ps " occurred ";pn counts(letter);ps " time(s)";pl ""
+		letter=letter+1
+		]
+	help "frequency"
+	]

@@ -1,0 +1,18 @@
+#include pps/library.tc
+#include lrblib.tc
+
+dir [
+ pl "";pl ""
+ char where(6400),lfs(1);int cnt,ix,lines
+ lfs(0)=10
+ cnt=readfile("dir.txt",where,6400)
+ if cnt [
+  while ((ix=index(where,cnt,lfs,1))>0) [
+   pft where,where+ix-1
+   where=where+ix
+   cnt=cnt-ix;lines=lines+1
+   if (lines>19) [sak;pl "";pl "";lines=0]
+   ]
+  ]
+ ]
+

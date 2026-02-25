@@ -1,0 +1,23 @@
+
+[
+lrb - 5/6/25
+]
+
+main [
+ char s(1000);
+
+ strcpy s,"ablewasiereisawelba"
+
+ int i,g
+ g=strlen(s)
+ printf "%d",g
+ pl ""
+ ps s
+ pl ""
+ while i<g/2 [
+  if (s(i)!=s(g-1-i)) [pn 0;abort]
+  i=i+1
+  ]
+  pn 1 
+ ]
+

@@ -1,0 +1,101 @@
+#include pps/lillib.tc
+
+// scan from 'from' to 'to' for character 'c', decrementing n(0) each 'c' found.
+// The scan stops if n(0) is decremented to 0, or when 'to' is reached 
+// and examined. Returns the offset from 'from' to the last character examined.
+scann char from(0), to(0), c; int n(0) [
+	return MC(from, to, c, n, 9)
+]
+
+// finds the leftmost copy IN s1..s1+n1 OF s2..s2+n2 (memory blocks,
+// left inclusive, right exclusive) returning false (0) if no match, else
+// the index of the first match character starting with 1 (one). 
+index char s1(0); int n1; char s2(0); int n2 [
+	if(n2<=0)return 1   // null matches beginning of s1 even if s1 is empty
+	if(n1<=0)return 0   // s1 empty
+	int a, d(0)
+	while( a+n2 <= n1) [
+		d(0)=1
+		a = a+1+scann(s1+a, s1+n1-n2, s2(0), d )
+		if(d(0))return 0
+		if(ceqn( s1+a, s2+1, n2-1 ))return a
+	]
+]
+
+// compare two strings for equality, returning true if equal, else false.
+// Only the first n characters are considered.
+ceqn char a(0), b(0); int n [
+	int k
+	k = -1
+	while((k=k+1)<n)[
+		if(a(k)!=b(k)) return 0
+	]
+	return 1
+]
+
+ps char b(0) [int l;char c;while(c=b(l))[MC c,1;l=l+1]return l]
+crlf [MC 10,1;MC 13,1]
+pl char b(0) [crlf;ps b]
+sak [
+ pl "Press Enter ... ";crlf
+ MC 2
+ MC 8,1;MC ' ',1
+ ]
+pn int n[MC ' ',1;MC n,14]
+
+// From property file look up name and return value in buff.
+// blen is the length of buff. Default is returned if file has
+// no entry for name.
+
+getproperty char file(0), name(0), buff(0); int blen; char default(0) [
+ return MC file,name,buff,blen,default,116
+ ]
+
+color char c [
+ if linux [
+  MC '\'-'A',1;MC '\'-1,1;MC '3',1;MC c,1;MC 'm',1
+  ]
+ ]
+
+hilo char c [
+ if linux [
+  MC '\'-'A',1;MC '\'-1,1;MC c,1;MC 'm',1
+  ]
+ ]
+
+int linux
+int a,b,c,d
+
+mainc [linux=1;main]
+
+main [
+
+ char tbuff(30)
+ getproperty "pps/version.prop","os =",tbuff,100,"..."
+ if index(tbuff,100,"Linux",5) linux=1
+
+ if linux [
+  crlf;pl "enter a 4 or a 0 to control the cursor ";d=MC 2
+  MC '\'-'A',1;MC '\'-1,1;MC d,1;MC ' ',1;MC 'q',1  // cursor d
+  ]
+
+ pl "";hilo '1';color '6';pl "multd.tc version 1.06d"
+ pl "tiny-c program by chip bradley and lee bradley"
+ pl "prints multiplication table"
+ pl "from 0*0 to 9*9";color '7'
+ crlf
+
+ while (a<=9) [
+  b=0
+  while (b<=9) [
+   if ((c%10)==0) [hilo '0';sak;crlf]
+   c=c+1
+   hilo '1';pn a;ps " *";pn b;ps " =";pn a*b;pl ""
+   b=b+1
+   ]
+  a=a+1
+  ]
+
+ hilo '0';color '7'
+
+ ]

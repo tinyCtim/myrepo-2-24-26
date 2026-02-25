@@ -1,0 +1,67 @@
+#include pps/lrblib.tc
+#include pps/library.tc
+
+// there is a bug ... 11/23/25
+// fixed :-)
+
+// ax + by = e
+// cx + dy = f
+
+input char c [ // get input
+ printf "input %c : ",c
+ return gn
+ ]
+
+abs int z [ // absolute value
+ if z < 0 return -z
+ else return z
+ ]
+
+main [
+ printf "%ctwo.tc - lrb - 11/23/25%c%c",10,10,10
+ int a,b,c,d,e,f,det,numx,numy
+ char signx,signy
+ int numxi,numyi,numxr,numyr
+
+ signx = signy = ' '
+
+ a = input 'a'
+ b = input 'b'
+ c = input 'c'
+ d = input 'd'
+ e = input 'e'
+ f = input 'f'
+
+ det = a*d - b*c
+
+ if det == 0 [
+  printf "%cDeterminant is zero - no unique solution.",10
+  abort
+  ]
+
+ numx = d*e - b*f; numy = -c*e + a*f
+
+ numxi = numx/det; numxr = numx%det
+ numyi = numy/det; numyr = numy%det
+
+ if numxi < 0 signx = '-'
+ if (numxi == 0) * (numxr < 0) signx = '-'
+// if numxr < 0 signx = '-'
+
+ if numyi < 0 signy = '-'
+ if (numyi == 0) * (numyr < 0) signy = '-'
+// if numyr < 0 signy = '-'
+
+ printf "%cSolution: %c",10,10
+
+ det = abs det
+ numxi = abs numxi; numyi = abs numyi
+ numxr = abs numxr; numyr = abs numyr
+
+ printf "%cx = %c%d",10,signx,numxi
+ dpf numxr,det,5
+
+ printf "%cy = %c%d",10,signy,numyi
+ dpf numyr,det,5
+ ]
+

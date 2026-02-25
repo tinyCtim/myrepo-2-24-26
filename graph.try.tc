@@ -1,0 +1,43 @@
+#include pps/lrblib.tc
+#include pps/library.tc
+
+// graph.try.tc - 6/14/23 - lrb
+
+// changed variable names to p, ps, wps
+
+asterisk int y [
+ y = y / 2
+ while y [
+  putchar '*'
+  y = y - 1
+  ]
+ ]
+
+main [
+ printf "%cgraph.try.tc - lrb - 6/14/23%c", 10, 10
+ int foo(100), v(0), debug
+ debug = 0
+ char p(500), file(30), fnm(30)
+ int ps, wps
+ int nl(1); nl(0) = 10
+ strcpy file, "graph.inp.txt"
+ printf "%cI will graph %s. ", 10, file
+ printf "Press the enter key or type in the file name : "
+ gs fnm
+ if debug printf "%c%d%c", 10, strlen(fnm), 10
+ if strlen(fnm) == 0 ;
+ else strcpy file, fnm
+ readfile file, p, 500
+ ps = split foo, p, nl
+ wps = 1 // note 1
+ while wps < ps [
+  pl " "
+  sleep 1
+  atoi foo(wps), v
+  pn v(0)
+  putchar ' '
+  asterisk v(0)
+  printf " (%d)", v(0)
+  wps = wps + 1 
+  ]
+ ]

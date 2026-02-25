@@ -1,0 +1,31 @@
+
+/* ps char b(0) [int l;char c;while(c=b(l))[MC c,1;l=l+1]return l]
+/* pl char b(0) [MC 10,1;MC 13,1;ps b]
+sak [pl "Press Enter ... ";return getchar]
+/* getchar [return MC 2]
+/* pn int n[MC ' ',1;MC n,14]
+color char c [MC '\'-'A',1;MC '\'-1,1;MC '3',1;MC c,1;MC 'm',1]
+hilo char c [MC '\'-'A',1;MC '\'-1,1;MC c,1;MC 'm',1]
+
+mult [
+
+ pl "";hilo '1';color '6';pl "mult.tc version 1.06"
+ pl "tiny-c program by chip bradley"
+ pl "prints multiplication table"
+ pl "from 0*0 to 9*9";color '7';pl ""
+
+ int a,b,c
+
+ while (a<=9) [
+  b=0
+  while (b<=9) [
+   if ((c%10)==0) [hilo '0';sak;pl ""]
+   c=c+1
+   hilo '1';pn a;ps " *";pn b;ps " =";pn a*b;pl ""
+   b=b+1
+   ]
+  a=a+1;c=0
+  ]
+ hilo '0';color '7'
+ ]
+
