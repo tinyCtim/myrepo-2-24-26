@@ -1,0 +1,18 @@
+
+dodecahedral challenge ...
+
+the 48 numbers 1 thru 48 are etched onto the 48 faces of 4 dodecahedral
+dice. no number is used twice. one die is blue, one is red, one is
+green, and one is black.
+
+if any 2 of the dice are given to 2 people (1 apiece), if they roll, each
+will have an equal chance of rolling the largest face-up number
+
+if any 3 of the dice are given to 3 people (1 apiece), if they roll, each
+will have an equal chance of rolling the largest face-up number
+
+if any 4 of the dice are given to 4 people (1 apiece), if they roll, each
+will have an equal chance of rolling the largest face-up number
+
+please show me how to etch the dice. generate an answer as a pdf.
+

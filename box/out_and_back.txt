@@ -1,0 +1,7 @@
+
+An out and back foot race takes place. Its total distance is 3 miles.
+Two friends, one slow, one fast, run the race. The fast runner runs a 6
+minute per mile pace. When the slow runner has run 1 mile, the fast
+runner, on his way back, crosses paths with him. If both runners run a
+flat pace, how long did it take the slow runner to complete the race?
+
