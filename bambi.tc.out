@@ -1,0 +1,88 @@
+
+bambi.tc
+
+pos int c, r; char msg(0) [
+
+*
+
+gotoxy int x, y [
+
+*
+
+clreol [
+
+*
+
+clreos [
+
+*
+
+cls [
+
+*
+
+delay int s [
+
+*
+
+cursoroff [
+
+*
+
+cursoron [
+
+*
+
+frame int f [ // print bambi frame
+
+*
+**
+*
+
+maind int d [ // use this to slow it down
+
+*
+
+red [color '1']
+
+*
+
+green [color '2']
+
+*
+
+yellow [color '3']
+
+*
+
+blue [color '4']
+
+*
+
+magenta [color '5']
+
+*
+
+cyan [color '6']
+
+*
+
+white [color '7']
+
+*
+
+main [
+
+*
+**
+*
+**
+*
+**
+*
+**
+***
+**
+*
+**
+*
