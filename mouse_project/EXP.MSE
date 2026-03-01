@@ -1,0 +1,36 @@
+
+~ EXP.MSE - lrb - 1/30/25
+
+~ raise b to the e power
+
+"!enter base " ? b : "!"
+"!enter exponent " ? e : "!"
+
+~ call the E macro
+
+#E,b.,e.,a;
+
+~ print the answer followed by a new line 
+
+a. !
+"!"
+
+~ define the E macro
+
+$E
+
+1 3% : ~ initialize answer
+1% b :
+2% e :
+
+~ main loop
+
+(
+e. 0 > ^
+3%. b. *
+3% :
+~ decrement e
+e. 1 - e :
+)
+
+@

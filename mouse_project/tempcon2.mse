@@ -1,0 +1,5 @@
+~ tempcon2.mse - lrb - 4/3/2005
+"!Enter temperature in Fahrenheit : " ?
+32 - 5 * 9 /
+"!Celsius equivalent is " ! "."
+$

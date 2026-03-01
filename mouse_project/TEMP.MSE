@@ -1,0 +1,18 @@
+
+~ f -> c or c -> f
+
+~ temp.mse - lrb - 9/13/25
+
+"!enter 1 for F to C, 2 for C to F : " ? a :
+a. 1 = [#F;]
+a. 2 = [#C;]
+
+$F
+"temp in F degrees? " ? f :
+f. 32 - 5 * 9 / ! " degrees C!"
+@
+
+$C
+"temp in C degrees? " ? c :
+c. 9 * 5 / 32 + ! " degrees F!"
+@
