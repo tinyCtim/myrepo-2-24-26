@@ -1,0 +1,8 @@
+
+what is that problem mentioned in Ramanujan The Man Who Knew Infinity
+that involves coming up with the house number that has the feature that
+the sum of the house numbers to its left equals the sum of the house
+numbers to its right?
+
+https://www.math.auckland.ac.nz/~butcher/miniature/miniature2.pdf
+

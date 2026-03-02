@@ -1,0 +1,32 @@
+
+x+y=5
+b+c=14
+c+d=17
+z=24
+z+a=29
+x+y+z+a+b+c+d+e=60
+y+b=6
+x+a=8
+
+There are 60 cars in a parking lot
+
+There are 5 SUVs that are not Hondas
+There are 14 red cars that are not SUVs
+There are 17 Hondas that are not SUVs
+There are 24 cars that are Hondas and SUVs and red
+There are 29 cars that are SUVs and are Hondas
+There are 6 red cars that are not Hondas
+There are 8 SUVs that are not red
+
+How many red cars are there?
+How many Hondas are there?
+How many SUVs are there?
+How many cars are neither red, a Honda or an SUV?
+
+Quantity	Count
+
+Red cars	40
+Hondas	46
+SUVs	34
+Neither red, Honda, nor SUV	5
+

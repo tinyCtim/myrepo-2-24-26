@@ -1,0 +1,64 @@
+<html>
+<!-- namegame.html - lrb - 3/15/9 5/9/25 -->
+<head>
+<title>The Name Game</title>
+<script>
+function klear(what) {
+what.form.text.value=''
+}
+function main(what) { // 0
+hardcoded=what.form.text.value
+if (!hardcoded||hardcoded.indexOf('...')!=-1) { // 1
+klear(what)
+} // 1
+else { // 1
+while ((n=hardcoded.indexOf('\n'))!=-1) { // 2
+if (n==0) hardcoded=hardcoded.substr(1)
+else hardcoded=hardcoded.substr(0,n)+' '+hardcoded.substr(n+1)
+} // 2
+stuff=''
+while ((n=hardcoded.indexOf(' '))!=-1) { // 2
+if (n==0) hardcoded=hardcoded.substr(1)
+else {
+stuff+=namegame(hardcoded.substr(0,n))
+hardcoded=hardcoded.substr(n+1)
+}
+} // 2
+if (hardcoded.length) stuff+=namegame(hardcoded)
+what.form.text.value='\n'+stuff.substr(0,stuff.length-1)+'\n\n\n\n...\n'
+} // 1
+} // 0
+function namegame(string) {
+first=string.substr(0,1).toLowerCase();last=(string.length!=1)?string.substr(1):first
+stuff=string+' '+string;stuff+='\n'+'Bo '
+if (first!='b') stuff+='B'
+stuff+=last;stuff+='\n'+'Banana Fana Fo '
+if (first!='f') stuff+='F'
+stuff+=last;stuff+='\n'+'Fee Fi Mo '
+if (first!='m') stuff+='M'
+stuff+=last;stuff+='\n'+string+'\n\n'
+return(stuff)
+}
+</script>
+</head>
+<body>
+<br>
+<table align=center width=89%><tr><td align=center>
+<form name='form'>
+<input value='Submit!' type=button onClick='main(this)'>
+<input value='Clear!' type=button onClick='klear(this)'>
+<p>
+<textarea name='text' cols=37 rows=13></textarea>
+<p>
+<b>
+Enter your first name. Click Submit!
+</form>
+<p>
+<a href=http://primepuzzle.com/tunxis/namegame.html>The Name Game</a>
+<p>
+<a href=http://yofx.blogspot.com/2009/02/shirley-elliss-name-game.html><img src=http://primepuzzle.com/tunxis/shirley.jpg></a>
+</b>
+</td></tr></table>
+</body>
+</html>
+

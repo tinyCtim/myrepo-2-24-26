@@ -1,0 +1,21 @@
+
+Hi Angelina,
+
+Here is a simpler but similar problem.
+
+x+y=5 There are 5 SUVs that are not Hondas
+b+c=14 There are 14 red cars that are not SUVs
+
+etc. etc.
+
+x+y+z+a+b+c+d+e=60 There are 60 cars in a parking lot
+
+etc. etc.
+
+Since you know z you can figure out a. Then you can figure out x. Then
+y. Then b. Then c. Then d. Then e.
+
+See you at 4 today.
+
+Lee
+
