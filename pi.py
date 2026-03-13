@@ -1,14 +1,15 @@
 
-# pi.py - 7/3,11/24
+# pi.py - 7/3,11/24 3/12/26
 # fixed by Aaron West
-
+# had to add mpmath. in two more places in line pi_approx = etc.
+  
 import mpmath
 
 def machin_formula(precision):
     mpmath.mp.dps = precision  # Set the precision (number of decimal places)
 
     # Machin's formula: pi/4 = 4 * arctan(1/5) - arctan(1/239)
-    pi_approx = 4 * (4 * mpmath.atan(mpmathify("1/5")) - mpmath.atan(mpmathify("1/239")))
+    pi_approx = 4 * (4 * mpmath.atan(mpmath.mpmathify("1/5")) - mpmath.atan(mpmath.mpmathify("1/239")))
     return pi_approx
 
 # Calculate pi with up to n digits of precision
@@ -18,4 +19,3 @@ pi_approximation = machin_formula(n)
 
 print("Approximation of pi using Machin's formula")
 print(pi_approximation)
-
