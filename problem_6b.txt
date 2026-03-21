@@ -1,0 +1,16 @@
+
+Problem 6b - 3/18/26
+
+Based on what you (and I together) learn about the beautiful sine curve,
+cosine curve and tangent curve, the CAST mnemonic chart and the concept
+of a reference angle, what are the values of the following? All arguments
+are in degrees. 
+
+You may use your calculator, and/or https://desmos.com, and/or my handy trig.
+chart, and/or your beautiful brain. Please tell me what you used.
+
+1. sin(30)
+2. cos(150)
+3. sin(240)
+4. tan(240)
+
