@@ -1,8 +1,8 @@
 #include pps/lrblib.tc
 #include pps/library.tc
 
-// ax + by = e
-// cx + dy = f
+// ax + by = e   e.g. 45x -21y = 314
+// cx + dy = f        -2x +13y = 11
 
 input char c [ // get input
  printf "input %c : ",c
@@ -15,12 +15,12 @@ abs int z [ // absolute value
  ]
 
 main [
- printf "%ctwo.tc - lrb - 4/19/26%c%c",10,10,10
+ printf "%ctwo.tc - lrb - 4/21/26%c%c",10,10,10
  int a,b,c,d,e,f,det,numx,numy
  char signx,signy
 
  a = input 'a'; b = input 'b'; c = input 'c'; d = input 'd'
- pl""
+ printf "%c",10
  e = input 'e'; f = input 'f'
 
  det = a*d - b*c
@@ -40,9 +40,9 @@ main [
  det = abs(det)
 
  printf "%cSolution: %c",10,10
- printf("%cx = %c%d",10,signx,numx/det)
+ printf "%cx = %c%d",10,signx,numx/det
  dpf numx%det,det,5
- printf("%cy = %c%d",10,signy,numy/det)
+ printf "%cy = %c%d",10,signy,numy/det
  dpf numy%det,det,5
  ]
 
