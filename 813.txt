@@ -1,0 +1,24 @@
+
+D:\mouse_project>mouse
+MOUSE, Peter Grogono, 1983; Lee Bradley, 2007
+Enter Mouse program's name : prime.3x.mse
+
+Enter a number in the range [2,32757] : 813
+
+Do you want to check 1. this number only or 2. the range 813 823
+1 or 2 ? 2
+
+823 : 823 is prime.
+822 : 2 3 137
+821 : 821 is prime.
+820 : 2^2 5 41
+819 : 3^2 7 13
+818 : 2 409
+817 : 19 43
+816 : 2^4 3 17
+815 : 5 163
+814 : 2 11 37
+813 : 3 271
+
+D:\mouse_project>
+

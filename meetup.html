@@ -1,0 +1,150 @@
+
+<html>
+
+<!-- Meet up! - lrb - 4/27/26 -->
+
+<head>
+
+<title>Countdown ...</title>
+
+<script>function space(n) {for (i=1;i<n;++i) document.write('&nbsp;')}</script>
+
+<script>
+
+<!-- Begin
+
+// Created by DendE PhisH
+
+function getTime() {
+
+c1 = new Image(); c1.src = "http://primepuzzle.com/dancing/letter-1.gif";
+c2 = new Image(); c2.src = "http://primepuzzle.com/dancing/letter-2.gif";
+c3 = new Image(); c3.src = "http://primepuzzle.com/dancing/letter-3.gif";
+c4 = new Image(); c4.src = "http://primepuzzle.com/dancing/letter-4.gif";
+c5 = new Image(); c5.src = "http://primepuzzle.com/dancing/letter-5.gif";
+c6 = new Image(); c6.src = "http://primepuzzle.com/dancing/letter-6.gif";
+c7 = new Image(); c7.src = "http://primepuzzle.com/dancing/letter-7.gif";
+c8 = new Image(); c8.src = "http://primepuzzle.com/dancing/letter-8.gif";
+c9 = new Image(); c9.src = "http://primepuzzle.com/dancing/letter-9.gif";
+c0 = new Image(); c0.src = "http://primepuzzle.com/dancing/letter-0.gif";
+
+now = new Date();
+
+// ENTER BELOW THE DATE YOU WISH TO COUNTDOWN TO
+later = new Date("Apr 30 2026 09:00:00");
+
+// line below added to stop the clock when the "gun goes off" - lrb
+if (now > later) later=now;
+
+days = (later - now) / 1000 / 60 / 60 / 24;
+
+daysRound = Math.floor(days);
+hours = (later - now) / 1000 / 60 / 60 - (24 * daysRound);
+hoursRound = Math.floor(hours);
+minutes = (later - now) / 1000 /60 - (24 * 60 * daysRound) - (60 * hoursRound);
+minutesRound = Math.floor(minutes);
+seconds = (later - now) / 1000 - (24 * 60 * 60 * daysRound) - (60 * 60 * hoursRound) - (60 * minutesRound);
+secondsRound = Math.round(seconds);
+
+if (secondsRound <= 9) {
+document.images.g.src = c0.src;
+document.images.h.src = eval("c"+secondsRound+".src");
+}
+else {
+document.images.g.src = eval("c"+Math.floor(secondsRound/10)+".src");
+document.images.h.src = eval("c"+(secondsRound%10)+".src");
+}
+if (minutesRound <= 9) {
+document.images.d.src = c0.src;
+document.images.e.src = eval("c"+minutesRound+".src");
+}
+else {
+document.images.d.src = eval("c"+Math.floor(minutesRound/10)+".src");
+document.images.e.src = eval("c"+(minutesRound%10)+".src");
+}
+if (hoursRound <= 9) {
+document.images.y.src = c0.src;
+document.images.z.src = eval("c"+hoursRound+".src");
+}
+else {
+document.images.y.src = eval("c"+Math.floor(hoursRound/10)+".src");
+document.images.z.src = eval("c"+(hoursRound%10)+".src");
+}
+if (daysRound <= 9) {
+document.images.x.src = c0.src;
+document.images.a.src = c0.src;
+document.images.b.src = eval("c"+daysRound+".src");
+}
+if (daysRound <= 99) {
+document.images.x.src = c0.src;
+document.images.a.src = eval("c"+Math.floor((daysRound/10)%10)+".src");
+document.images.b.src = eval("c"+Math.floor(daysRound%10)+".src");
+}
+if (daysRound <= 999){
+document.images.x.src = eval("c"+Math.floor(daysRound/100)+".src");
+document.images.a.src = eval("c"+Math.floor((daysRound/10)%10)+".src");
+document.images.b.src = eval("c"+Math.floor(daysRound%10)+".src");
+}
+newtime = window.setTimeout("getTime();", 1000);
+}
+
+// End -->
+
+</script>
+
+</head>
+
+<body onLoad="getTime()" bgcolor="#FFFFFF" text="#005260" link="#C0C0C0"
+vlink="#C0C0C0" alink="#C0C0C0" topmargin="0" rightmargin="0"
+leftmargin="0" bottommargin="0" marginwidth="0">
+
+<center>
+
+<br><br><br><a href=http://primepuzzle.com/tpf/meetup.html><font size="3" face="Arial" color="#800000"><b>Countdown Till
+Meet up!</b></font></a>
+
+<p>
+
+<font size="3" face="Arial" color=darkblue><b>(A Look-Forward-To)</b></font><p>
+<br>
+
+<table border="0" width="100%" align="center"><tr><td bgcolor="#ffffff" valign="bottom" align="center">
+
+<font size="3" face="Arial" color="#800000"><b>
+<img src="http://primepuzzle.com/dancing/-trans-t.gif" name=x>
+<img src="http://primepuzzle.com/dancing/-trans-t.gif" name=a>
+<img src="http://primepuzzle.com/dancing/-trans-t.gif" name=b>
+&nbsp;&nbsp;Days<br>
+&nbsp;&nbsp;<img src="http://primepuzzle.com/dancing/-trans-t.gif" name=y>
+<img src="http://primepuzzle.com/dancing/-trans-t.gif" name=z>
+&nbsp;&nbsp;Hours<br>
+&nbsp;&nbsp;<img src="http://primepuzzle.com/dancing/-trans-t.gif" name=d>
+<img src="http://primepuzzle.com/dancing/-trans-t.gif" name=e>
+&nbsp;&nbsp;Minutes<br>
+&nbsp;&nbsp;<img src="http://primepuzzle.com/dancing/-trans-t.gif" name=g>
+<img src="http://primepuzzle.com/dancing/-trans-t.gif" name=h>&nbsp;&nbsp;Seconds<br>
+<br><b><p>
+</td></tr></table>
+
+<p>
+
+<font size="3" face="Arial" color=darkblue><b>
+
+Everyone is hereby notified that the anti-rain dance officially begins
+
+<p>
+
+<img src=http://primepuzzle.com/dancing/letter-n.gif><img src=http://primepuzzle.com/dancing/letter-o.gif> <img src=http://primepuzzle.com/dancing/letter-w.gif>
+
+<p>
+
+</center></td></tr></table>
+
+<center>
+<audio controls><source src="http://primepuzzle.com/tpf/clock-ticking-1.mp3"" type="audio/mpeg">Your browser does not support the audio tag.</audio>
+</center>
+
+</body>
+
+</html>
+
