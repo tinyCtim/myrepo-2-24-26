@@ -10,7 +10,6 @@ one = getchar
 MC 10,1
 your '0','0',one
 printf "%cWhat color is your parachute?",10
-// white
 ]
 
 your char h, t, o [
@@ -19,13 +18,10 @@ MC ';', 1;MC h, 1; MC t, 1; MC o, 1;MC 'm', 1;
 MC h, 1; MC t, 1; MC o, 1;
 ]
 
-// int yes
-
 main [
 white
-printf "%ccold.tc - lrb - 10/31/24%c%c", 10, 10, 10
+printf "%ccold_try.tc - lrb - 5/1/26%c%c", 10, 10, 10
 int i, j, k;char h, t, o;int brk
-// yes = 1
 while ((brk==0) * (i<=2)) [
 h = i + '0';j = 0
 while ((brk==0) * (j<=9)) [
