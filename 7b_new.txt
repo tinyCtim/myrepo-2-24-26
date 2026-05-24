@@ -1,0 +1,56 @@
+
+Consider the function
+
+y = f(x) = 3x^2 + 5x
+
+question 7b : what does the expression
+
+( f(x+h) - f(x) ) / ( (x + h) - x ) = ( f(x+h) - f(x) ) /  h
+
+approach as h approaches 0 ?
+
+h is to be thought of as a tiny value. We are investigating the change
+in the function's value divided by the change h of the "argument" x. We
+are especially interested to see if this "difference quotient"
+approaches a limiting value.
+
+Answer:
+
+The function says to do the following if you "feed" it "me".
+
+"square me, then multiply the result by 3, then add to this result 5
+times me."
+
+So if "me" is x+h, f(x+h) = 3(x+h)^2 + 5(x+h)
+
+We are interested in
+
+( f(x+h) - f(x) ) /  h
+
+We see that we need to look at
+
+( 3(x+h)^2 + 5(x+h) - (3x^2 + 5x) ) / h
+
+and then see what it approaches as h approaches 0.
+
+This is where you have to be careful. Expand everything out and
+simplify.
+
+( 3(x^2 +2xh + h^2) + 5x  + 5h  -3x^2 - 5x ) / h =  this is the tricky step
+
+(6xh + 3h^2 + 5h) / h =
+
+6x + 3h + 5
+
+The above expression approaches 6x + 5 as h approaches 0.
+
+We say
+
+The derivative of 3x^2 + 5x is 6x + 5.
+
+======================================================================
+
+Your turn. I know. This is not easy. But see how far you can go.
+
+What is the derivative of the function y = f(x) = 2x^2 - 10x?
+
