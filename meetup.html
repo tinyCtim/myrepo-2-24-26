@@ -33,8 +33,14 @@ now = new Date();
 // ENTER BELOW THE DATE YOU WISH TO COUNTDOWN TO
 // later = new Date("May 13 2026 09:00:00");
 // later = new Date("May 21 2026 09:00:00");
-later = new Date("June 9 2026 09:00:00");
-
+// later = new Date("June 9 2026 09:00:00");
+// later = new Date("June 26 2026 09:00:00");
+// later = new Date("August 1 2026 08:30:00"); // Conquering Challenges 5K in Avon
+// later = new Date("August 11 2026 09:00:00"); // Hartford
+// later = new Date("August 28 2026 09:00:00"); // Cedar Mtn
+// later = new Date("September 8 2026 09:00:00"); // Cedar Mtn
+// later = new Date("September 22 2026 09:00:00"); // tbd
+later = new Date("October 9 2026 09:00:00"); // tbd
 // line below added to stop the clock when the "gun goes off" - lrb
 if (now > later) later=now;
 
@@ -107,7 +113,26 @@ Meet up!</b></font></a>
 
 <p>
 
-<font size="3" face="Arial" color=darkblue><b>(A Look-Forward-To)</b></font><p>
+Today's date is :
+
+<span id="current-date"></span>
+
+<script>
+  const dateElement = document.getElementById("current-date");
+  const today = new Date();
+
+  // Format the date (e.g., "Wednesday, July 15, 2026")
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  dateElement.textContent = today.toLocaleDateString(undefined, options);
+</script>
+
+<p>
+<font size="3" face="Arial" color=darkblue><b>
+(A Look-Forward-To)<p>
+Friday October 9 9:00 AM</p>
+<!-- Tuesday September 22 9:00 AM</p> -->
+</b></font><p>
+
 <br>
 
 <table border="0" width="100%" align="center"><tr><td bgcolor="#ffffff" valign="bottom" align="center">

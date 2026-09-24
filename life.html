@@ -1,0 +1,95 @@
+
+<html>
+
+<!-- life.html - 3/4,10,12/2010 - tct -->
+
+<head><title>Life</title></head>
+
+<body>
+
+<table align=center width=89%><tr><td>
+
+<pre><font size=+1><b>
+3/4/2010
+
+No self-respecting language is complete of course unless it's capable of
+handling the following exercise ...
+
+<a href=http://primepuzzle.com/tc/life.html>Write the "Game of Life" in tiny-c.</a>
+
+
+<img src=http://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif>
+
+(Well, our latest member (that would be Bob Hardhacker, I mean, Tom
+Veile) might disagree and say the assignment should be "Write a program
+in tiny-c that generates its own source code" which, I must admit,
+occured to me as a possible March challenge, but I decided that was too
+arcane to ask. Maybe some other day ...)
+
+You say you haven't heard of "The Game of Life?" You haven't "wasted"
+hours coding, watching, thinking about John Conway's masterpiece? Where
+have you been?!
+
+This may be dangerous but I'm going to leave the spec's for this one
+pretty open-ended. Be creative and set your own limits. The most
+important requirement of course is that you follow the rules:
+
+In an n x n grid ...
+
+1. an occupied cell "lives" and will appear in the "next generation" if
+it has 2 or 3 "neighbors" (i.e. occupied cells in its neighborhood)
+
+2. an occupied cell "dies" and does not appear in the "next generation"
+if it has 0, 1, 4 or more "neighbors" (loneliness / overcrowding rule)
+
+3. there is a "birth" in an unoccupied cell and will appear in the "next
+generation" if this cell has exactly 3 "neighbors."
+
+One new thing you will have to investigate in order to do this
+assignment is how to position the cursor in tiny-c programs. The system
+library has functions that do this. In addition, if you're using the PC
+interpreter (i.e. not the Linux interpreter) you will need to run
+ANSI.COM (or equivalent) before you run the interpreter to provide
+support for the cursor positioning calls.
+
+Here's a program which uses cursor positioning (and a page which shows a
+sample run).
+
+<a href=http://primepuzzle.com/tc/meteor.tc>meteor.tc</a> <a href=http://primepuzzle.com/tc/meteor.html>meteor.html</a>
+
+References:
+
+<a href=http://www.bitstorm.org/gameoflife/>Java applet</a> <a href=http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life>Wikipedia</a>
+
+Spoiler:
+
+<a href=http://primepuzzle.com/tc/life.tc>tiny-c life program</a>
+
+Notes:
+
+The above solution has a "menu" system which looks like so:
+
+b/g/l/f/m/a/s/r/w/p/q/? 
+
+The help pick (?) is supported by the code below.
+
+  if (b=='?') [
+   pl"";pl "";ps "(b)link (g)lide (l)ine (f)ill (m)anual"
+   pl "r(a)ndom (s)peed (r)ead (w)rite (p)lay (q)uit"
+   ]
+
+It has a few bells and whistles (quite literally). A video capture of a
+run may be seen here:
+
+<a href=http://www.primepuzzle.com/tc/life-glider.gif>http://www.primepuzzle.com/tc/life-glider.gif</a>
+
+</b></font></pre>
+
+</td></tr></table>
+
+</body>
+
+</html>
+
+<!-- <a href=http://primepuzzle.com/tc/life-glider.avi>glider movie</a> -->
+
