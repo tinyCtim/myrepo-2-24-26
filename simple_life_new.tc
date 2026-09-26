@@ -1,0 +1,94 @@
+#include pps/library.tc
+#include pps/lrblib.tc
+
+// simple_life.tc - lrb - 7/28/18
+// 9/24/26
+
+char cell(41*41),dell(41*41),asterisk,space
+int work
+
+birth_death int rp,cp [
+ int rw,cw,counter
+ rw=rp-1
+// no change is default
+ dell(41*rp+cp)=cell(41*rp+cp)
+ while rw<=rp+1 [
+  cw=cp-1
+  while cw<=cp+1 [
+// legal?
+   if ((rw>-1)*(rw<41)*(cw>-1)*(cw<41)) [
+    if (cell(41*rw+cw)==asterisk) counter=counter+1
+    ]
+   cw=cw+1
+   ]
+  rw=rw+1
+  ]
+// birth?
+ if ((cell(41*rp+cp)==space)) [
+  if (counter==3) dell(41*rp+cp)=asterisk
+  ]
+// death?
+ else [
+  if ((counter<3)+(counter>4)) dell(41*rp+cp)=space
+  ]
+ ]
+
+cycle int foo [
+ int i,r,c,bar
+ r=0
+ while r<41 [
+  c=0
+  while c<41 [
+   if foo==0 cell(41*r+c)=' '
+   else [
+    if work [
+     bar=random(0,1)
+//     if bar color '4'
+//     else color '7'
+     ]
+    putchar cell(41*r+c)
+    birth_death r,c
+    ]
+   c=c+1
+   ]
+  r=r+1
+  if foo==1 [
+   pl ""
+   i=1000;while i i=i-1
+   ]
+  ]
+ ]
+
+main [
+ int c,rs,cs,delta,gen,gens
+ char tcbuff(40)
+ getproperty "pps/version.prop","os =",tcbuff,40,"..."
+ work=index(tcbuff,strlen(tcbuff),"Linux",5)
+// if work [on;color '4';hilo '1']
+ pl "simple_life.tc - lrb - 7/28/18"
+// if work color '7'
+ pl "";pl ""
+ asterisk='*';space=' '
+ rs=21
+ pl "enter a number between 1 and 11 inclusive : ";delta=gn
+ cs=21-delta
+// initialize w/ spaces
+ cycle 0
+// load the row
+ c=cs
+ while c<=21+delta [
+  cell(41*rs+c)=asterisk
+  c=c+1
+  ]
+ pl "generations? ";gens=gen=gn
+// if work off
+ while gen [
+  pl "";pn 2*delta+1;ps " - gen";pn gens-gen+1;pl ""
+  gen=gen-1
+  sleep 1
+// display and update the array
+  cycle 1;strcpy cell,dell
+  ]
+// if work [on;color '7']
+ ]
+
