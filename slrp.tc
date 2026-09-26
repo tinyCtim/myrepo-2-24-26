@@ -54,17 +54,17 @@ cycle int foo [
 
 int dim
 
-slrp [
+slrp [ // get desired delay in seconds
  printf("%cEnter pause between generations e.g. 5 for 5 seconds : ",10
  return gn
  ]
- 
+
 main [
- int s;s=slrp()
+ int s;s=slrp() // new
  int c,rs,cs,delta,gen,gens
  char datebuff(20)
  dim=15
- pl "slr.tc - lrb - 8/17/22"
+ pl "slrp.tc - lrb - 8/17/22, 9/26/26"
  asterisk='*';space=' '
  cdate datebuff
  // yyyy-mm-dd hh:mm:ss
