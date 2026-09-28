@@ -5,7 +5,10 @@
 // modified to detect periodicity // 9/27/26
 // make sleep time controlable
 
-char cell(15*15),dell(15*15),asterisk,space;int pop
+char cell(15*15),dell(15*15),asterisk,space
+int pop,dim
+int pa(6) // array used to determine if periodic
+int ai // array index
 
 birth_death int rp,cp [
  int rw,cw,counter
@@ -33,19 +36,20 @@ birth_death int rp,cp [
   ]
  ]
 
-int pa(4) // periodic array
-int ai // array index
+// cycle loads asterisks randomly initially.
+// then, for each cell, display cell and call birth_death.
+// remember last 5 population values.
 
-cycle int foo [
+cycle int bar [
  int i,r,c
  while r<dim [
-  if foo==1 printf "%c             ",10
+  if bar==1 printf "%c             ",10
   c=0
   while c<dim [
-   if foo==0 [
+   if bar==0 [
     i=random(0,5)
-    if i==0 [cell(dim*r+c)='*';pop=pop+1]
-    else cell(dim*r+c)=' '
+    if i==0 [cell(dim*r+c)=asterisk;pop=pop+1]
+    else cell(dim*r+c)=space
     ]
    else [
     putchar cell(dim*r+c)
@@ -57,45 +61,40 @@ cycle int foo [
   ]
   pa(ai)=pop
   ai=ai+1
-  ai=ai%5
+  ai=ai%7
  ]
 
-int dim
-
-slrp [ // get desired delay in seconds
- printf("%cEnter pause between generations e.g. 2 for 2 seconds : ",10
- return gn
- ]
-
-periodic [ // returns 4 if periodic
- int tf,ail
- tf=pa(0)==pa(1)
+periodic [ // returns 6 if periodic
+ int tf
+ tf=(pa(0)==pa(1))
  tf=tf+(pa(1)==pa(2))
  tf=tf+(pa(2)==pa(3))
  tf=tf+(pa(3)==pa(4))
+ tf=tf+(pa(4)==pa(5))
+ tf=tf+(pa(5)==pa(6))
  return tf
  ]
 
-main [ // 0
- int foo
- int s;s=slrp()
- int c,rs,cs,delta,gen,gens
+main [
+ int foo,s,c,rs,cs,delta,gen,gens,r1,r2
  char datebuff(20)
- dim=15 // important!
  pl "slrp.tc - lrb - 9/27/26"
+ printf "%c%cEnter pause between generations e.g. 2 for 2 seconds : ",10,10
+ s=gn
+ dim=15
  asterisk='*';space=' '
  cdate datebuff
  // yyyy-mm-dd hh:mm:ss
  // 0123456789abcdefghi
- int r1,r2 // hash the seconds to seed the random number generator
+ // hash the seconds to seed the random number generator
  r1=datebuff(17)-'0';r2=datebuff(18)-'0'
  r1=10*r1+r2
  if r1%2==0 r1=r1+1
  seed=last=r1
- cycle 0 // clear the board
+ cycle 0 // load board
  ai=0
- printf "%cgenerations? ",10;gens=gen=gn
- while gen [ // main loop
+ printf "generations? ";gens=gen=gn
+ while gen [
   cdate datebuff
   printf "%c%cpopulation: %d generation: %d time: %s%c",10,10,pop,gens-gen+1,datebuff,10
   gen=gen-1
@@ -103,11 +102,8 @@ main [ // 0
 // display and update the array
   cycle 1;strcpy cell,dell
   foo=periodic()
-//  printf ("%cfoo=%d%c%d %d %d %d %d ",10,foo,10,pa(0),pa(1),pa(2),pa(3),pa(4))
-  if (foo==4) [ // 1
-   // sak()
+  if (foo==6) [
    printf("%cperiodic",10);sleep 4;abort
-   ] // 1
-  ] // main loop
- ] // 0
-
+   ]
+  ]
+ ]
