@@ -38,7 +38,7 @@ birth_death int rp,cp [
 
 // cycle loads asterisks randomly initially.
 // then, for each cell, display cell and call birth_death.
-// remember last 5 population values.
+// remember last 7 population values.
 
 cycle int bar [
  int i,r,c
