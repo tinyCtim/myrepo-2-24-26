@@ -1,22 +1,19 @@
-
-/***    ___ _  _  ___ _   _   _ ___  ___
+/***    ___ _  _  ___ _   _   _ ___  ___ 
  *     |_ _| \| |/ __| | | | | |   \| __|
- *      | || .` | (__| |_| |_| | |) | _|
+ *      | || .` | (__| |_| |_| | |) | _| 
  *     |___|_|\_|\___|____\___/|___/|___|   */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
 
-/***    ___  ___ ___ ___ _  _ ___
+/***    ___  ___ ___ ___ _  _ ___ 
  *     |   \| __| __|_ _| \| | __|
- *     | |) | _|| _| | || .` | _|
+ *     | |) | _|| _| | || .` | _| 
  *     |___/|___|_| |___|_|\_|___|          */
-
 #define WIDTH 60
 #define HEIGHT 40
-#define ITERATION 5000
+#define ITERATION 1000
 #define SPEED 1500
 #define ALIVE '#'
 #define DEAD ' '
@@ -31,7 +28,6 @@ int generation = 0;
  * or 1 (alive). This is used to initialize the grid at the start of
  * the Game of Life.
  */
-
 void initGrid() {
     for (int i = 0; i < HEIGHT; i++) {
         for (int j = 0; j < WIDTH; j++) {
@@ -49,7 +45,6 @@ void initGrid() {
  * cells. The function is intended to be used in the main loop of
  * the program to print the state of the grid at each iteration.
  */
-
 void printGrid() {
     system("clear");
     for (int i = 0; i < HEIGHT; i++) {
@@ -77,7 +72,6 @@ void printGrid() {
  * @param j The column of the cell in the grid.
  * @return The number of alive neighbours of the cell.
  */
-
 int countAliveNeighbours(int i, int j) {
     int count = 0;
     for (int k = -1; k <= 1; k++) {
@@ -101,7 +95,6 @@ int countAliveNeighbours(int i, int j) {
  * should be alive or dead in the new grid. The new grid is then
  * copied back into the current grid.
  */
-
 void updateGrid() {
     int newGrid[HEIGHT][WIDTH];
     for (int i = 0; i < HEIGHT; i++) {
@@ -125,17 +118,14 @@ void updateGrid() {
  * grid and updating it each time. The usleep() call is used to slow down
  * the iteration.
  */
-
 int main() {
     srand(time(NULL));
     initGrid();
-    int iter;
-    printf("\nEnter number of generations wanted e.g. 813 ");
-    scanf("%d",&iter);
-    for (int i = 0; i < iter; i++) {
+    for (int i = 0; i < ITERATION; i++) {
         printGrid();
         updateGrid();
         usleep(SPEED * 1000);
     }
     return 0;
 }
+
