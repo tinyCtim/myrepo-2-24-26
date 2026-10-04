@@ -22,7 +22,6 @@
 #define DEAD ' '
 
 int grid[HEIGHT][WIDTH];
-int generation = 0;
 
 /**
  * @brief Initializes the grid with random alive/dead values.
@@ -129,13 +128,16 @@ void updateGrid() {
 int main() {
     srand(time(NULL));
     initGrid();
-    int iter;
-    printf("\nEnter number of generations wanted e.g. 813 ");
+    int iter,speed;
+    printf("\nrun.c - 10/4/26");
+    printf("\nEnter number of generations e.g. 813 ");
     scanf("%d",&iter);
+    printf("Enter pause between generations e.g. 10 ");
+    scanf("%d",&speed);
     for (int i = 0; i < iter; i++) {
         printGrid();
         updateGrid();
-        usleep(SPEED * 1000);
+        usleep(speed * 1000);
     }
     return 0;
 }
