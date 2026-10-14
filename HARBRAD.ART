@@ -1,0 +1,260 @@
+
+               In The Beginning, There Was HARBRAD ...
+                    Copyright (c) 1991 Lee Bradley
+
+It might be instructive to discuss a few HARBRAD examples. The simplest
+one is EXAMPLE.HBS. This program displays the numbers 10, 20, 30, ... ,
+900 on the console. Not a terribly useful program, but it does
+illustrate quite a few important things.
+
+Here's the code:
+
+     00,+000   
+     01,+000                EXAMPLE.HBS
+     02,+000   
+     03,+113      L    TN   START AT 10
+     04,+800   LB PT        PRINT THE VALUE
+     05,+313      A    TN   BUMP THE VALUE BY 10
+     06,+412      S    NT   TAKE AWAY 910
+     07,-311      BRZ  BY   GET OUT IF DONE
+     08,+312      A    NT   ADD IT BACK IF NOT DONE
+     09,+000                 
+     10,-104      BR   LB   OTHERWISE KEEP ON TRUCKIN'
+     11,+900   BY STOP      ALL DONE
+     12,+910   NT DW   +910 UPPER LIMIT +10
+     13,+010   TN DW   +010 THE INITIAL VALUE & INCREMENT
+     14,+000   
+
+This program outputs (see the code at machine location 04 above) what's
+in the Accumulator. All computers have such a thing. The 8080 CPU has
+not only an "Accumulator" (register A,) but it also has other registers
+(registers F, B, C, D, E, H, L.)
+
+The Accumulator is an *implied* operand in *every* HARBRAD instruction
+(except STOP.) That is, the instruction at machine location 03 Loads the
+Accumulator with the data that is at machine location 13. The
+instruction at location 07 will branch (jump) to location 11 *if* the
+Accumulator is zero.
+
+You'll notice there are a few gaps in the program above. Location 09 for
+example. Its presence has an effect, but not one that you feel when you
+run the program. These are sometimes referred to as NOP's, (No
+OPerations.) They take up room, and cause assemblers to assign labeled
+locations different values than they would if they were not there. In
+fact, let's see what it would look like if they were not there. We
+really have 5 such lines, one of which simply documents the name of the
+program, EXAMPLE.HBS.  Let's keep just that one and delete the other 4.
+
+To do this, run the editor, ZDE, on EXAMPLE.HBS, and delete the four
+"NOP" lines. You should get:
+
+                  EXAMPLE.HBS
+        L    TN   START AT 10
+     LB PT        PRINT THE VALUE
+        A    TN   BUMP THE VALUE BY 10
+        S    NT   TAKE AWAY 910
+        BRZ  BY   GET OUT IF DONE
+        A    OT   ADD IT BACK IF NOT DONE
+        BR   LB   OTHERWISE KEEP ON TRUCKIN'
+     BY STOP      ALL DONE
+     NT DW   +910 UPPER LIMIT +10
+     TN DW   +010 THE INITIAL VALUE & INCREMENT
+        END       EXAMPLE
+
+To run this program, you must "assemble" it. This can be done manually
+or automatically. Running the assembler, HASM, we get:
+
+What we get is a bug. The assembler is not very smart and fails to
+report things like unreferenced labels and unlabeled references. If you
+look carefully, you will see that
+
+        A    OT   ADD IT BACK IF NOT DONE
+
+uses an "unlabeled reference" (ie. OT is undefined.) So perhaps our
+first lesson in debugging is:
+
+When something does not work, try to figure out who's (what's) at fault.
+
+It took me about 5 minutes to discover this undefined symbol bug. The
+first thing I noticed was that the assembler threw some garbage at the
+screen when I ran it. So I went back in with the editor to see what
+might be wrong. Also, when I ran the buggy program, the emulator gave me
+a Subscript out of Bounds error message, early on. Eventually I spotted
+the problem. I changed the OT to an NT, re-assembled and ran. It worked.
+
+It turns out, the reason I had an OT in the first place is this: I used
+to have the value +110 at the place which used to be named OT (note the
+mnemonic choice of label; One hundred and Ten = OT.) Then I decided to
+change it to +910. Thus the label NT (Nine hundred and Ten) was born. I
+just failed to change ALL occurences of OT to NT. Bugs are born by
+changes like this.
+
+The next step is to *generalize*. Let's change EXAMPLE.HBS into
+BEGIN.HBS.  It will *ReaD* three values. The beginning number, the
+increment value and the ending number. Here it is:
+
+                  BEGIN.HBS
+        RD
+        ST   SN   START AT SN
+        RD
+        ST   IN   INCREMENT WITH IN
+        RD
+        ST   EN   END AT EN
+        L    SN
+     LB PT        PRINT THE VALUE
+        A    IN   BUMP THE VALUE BY IN
+        S    EN   TAKE AWAY EN+IN
+        BRP  BY   GET OUT IF DONE
+        A    EN   ADD IT BACK IF NOT DONE
+        BR   LB   AND KEEP ON TRUCKIN'
+     BY STOP      ALL DONE
+     SN DS   01   THE INITIAL VALUE
+     IN DS   01   THE INCREMENT
+     EN DS   01   THE END VALUE
+        END       EXAMPLE
+
+Note how there are no more DW's (Define Word.) They have been replaced
+by some DS's (Define Storage.) We only need one (01) "word" for each of
+the three numbers.
+
+Assemble this one with HASM. Run it with HRUN.
+
+     00,+000               BEGIN.HBS
+     01,+700     RD
+     02,+215     ST   SN   START AT SN
+     03,+700     RD
+     04,+216     ST   IN   INCREMENT WITH IN
+     05,+700     RD
+     06,+217     ST   EN   END AT EN
+     07,+115     L    SN
+     08,+800  LB PT        PRINT THE VALUE
+     09,+316     A    IN   BUMP THE VALUE BY IN
+     10,+417     S    EN   TAKE AWAY EN+IN
+     11,-214     BRP  BY   GET OUT IF DONE
+     12,+317     A    EN   ADD IT BACK IF NOT DONE
+     13,-108     BR   LB   AND KEEP ON TRUCKIN'
+     14,+900  BY STOP      ALL DONE
+     15,+000  SN DS   01   THE INITIAL VALUE
+     16,+000  IN DS   01   THE INCREMENT
+     17,+000  EN DS   01   THEN END VALUE
+
+There are several other example programs on the disk. PRIMES computes
+prime numbers.
+
+     00,+000                PRIMES.HBS 11/18/91
+     01,+700     RD         GET UPPER LIMIT.
+     02,+256     ST   N1    MUST NOT BE TOO BIG!
+     03,+151     L    ON
+     04,+252     ST   J1    J <- 1
+     05,+351     A    ON
+     06,+257     ST   A1    A(1) <- 2
+     07,+800     PT         PRINT 2, FIRST
+     08,+351     A    ON    PRIME.
+     09,+254     ST   I1    I <- 3
+     10,+151  IL L    ON    I LOOP
+     11,+253     ST   K1    K <- 1
+     12,+148  KL L    LA    K LOOP.  LOAD
+     13,+353     A    K1    LOAD A.
+     14,+451     S    ON
+     15,+216     ST   L1
+     16,+000  L1 DS   01    AC  <- A(K)
+     17,+255     ST   SV    SAVE IT.
+     18,+154     L    I1
+     19,+655     D    SV
+     20,+555     M    SV
+     21,+654     D    I1
+     22,-242     BRP  BI    IF I/A(K)=
+     23,+155     L    SV    INT(I/A(K))
+     24,+555     M    SV    THEN BUMP I.
+     25,+454     S    I1
+     26,-232     BRP  BJ    IF A(K) > SQR(I)
+     27,+153     L    K1    THEN BUMP J.
+     28,+351     A    ON
+     29,+253     ST   K1    K <- K+1
+     30,+452     S    J1
+     31,-512     BRNP KL
+     32,+152  BJ L    J1    BUMP J.
+     33,+351     A    ON
+     34,+252     ST   J1    J <- J+1
+     35,+149     L    SA    LOAD STORE A.
+     36,+352     A    J1
+     37,+451     S    ON
+     38,+241     ST   L2
+     39,+154     L    I1    AC  <- I
+     40,+800     PT         PRINT I, PRIME.
+     41,+000  L2 DS   01    A(J) <- I
+     42,+154  BI L    I1    BUMP I BY 2.
+     43,+350     A    TW
+     44,+254     ST   I1    I <- I + 2
+     45,+456     S    N1
+     46,-510     BRNP IL
+     47,+900     STOP       STOP
+     48,+157  LA L    A1    LOAD A
+     49,+257  SA ST   A1    STORE A
+     50,+002  TW DW   +002  THE VALUE 2.
+     51,+001  ON DW   +001  THE VALUE 1.
+     52,+000  J1 DS   01    J
+     53,+000  K1 DS   01    K
+     54,+000  I1 DS   01    I
+     55,+000  SV DS   01    SAVE AREA
+     56,+000  N1 DS   01    UPPER LIMIT.
+     57,+000  A1 DS   01    ARRAY A STARTS HERE
+
+This is (obviously) a much more complicated program. It figures out and
+prints the first 44 prime numbers. It will not be explained here.  But
+it will be pointed out that in order to pull this feat off in 100 words
+of code, it was necessary to let the instructions modify themselves!
+
+Such a practice (self-modifying code) is generally frowned upon. But
+occasionally, it's the only way you can do it.
+
+Another equally useless and almost as interesting program is ADDDEC. 
+This program adds two 10-digit decimal numbers and prints their sum.
+
+         2352828491
+         9393929292
+     +  -----------
+        11746757783
+
+This is also a non-trivial program, given the very limited resources of
+HARBRAD.
+
+Both this program and PRIMES use just about every "word" of the HARBRAD
+computer's memory (all 100 locations.)
+
+When ADDDEC is run, you see 20 ? marks, and you enter the 20 decimal
+digits. The first 10 are for the first number (high order down to 1's
+place) and the second 10 are for the second number. The 11-digit sum is
+computed and displayed. Think about how *you* add two 10-digit decimal
+numbers. That's what the program does. It, like PRIMES, is
+self-modifying.
+
+These last two examples would appeal to the "hacker," the person who
+likes a complicated task and who is into such things as self-modifying
+code. Back on earth, how would you convert Centigrade temperatures to
+Fahrenheit?
+
+     00,+000                  CONVTEMP.HBS
+     01,+700   TP RD          GET CENTIGRADE
+     02,+507      M    NI     USE FORMULA
+     03,+608      D    FI     F =
+     04,+309      A    TT     9*C/5 + 32
+     05,+800      PT          PRINT FAHRENHEIT
+     06,+900      STOP
+     07,+009   NI DW   +009   THE NUMBER 9
+     08,+005   FI DW   +005   THE NUMBER 5
+     09,+032   TT DW   +032   THE NUMBER 32
+
+You run it, it asks you (with its ?) for a Centigrade temperature, you
+give it one and it computes and prints its Fahrenheit equivalent.
+
+Study at least the first and last example programs. Try to program a few
+things yourself in this language. Use the assembler and the emulator. If
+you can do it in HARBRAD, you are not far from being able to do it in
+Z80 assembler, a MUCH more powerful language for a MUCH more powerful
+computer!  And a REAL computer, at that!
+
+Of course, read HARBRAD.DOC first. If you started with this file, you 
+might think you are ready to program in HARBRAD. But there is nothing 
+like reading the documentation when you need something clarified.
+
