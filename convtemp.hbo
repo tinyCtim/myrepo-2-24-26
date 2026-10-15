@@ -1,0 +1,10 @@
+00,+000               CONVTEMP.HBS
+01,+700     RD        GET CENTIGRADE
+02,+507     M    NI   USE FORMULA
+03,+608     D    FI   F = 9*C/5+32
+04,+309     A    TT
+05,+800     PT        PRINT F
+06,+900     STOP
+07,+009  NI DW   +009 THE NUMBER 9
+08,+005  FI DW   +005 THE NUMBER 5
+09,+032  TT DW   +032 THE NUMBER 32

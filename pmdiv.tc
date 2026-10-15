@@ -1,0 +1,73 @@
+#include pps/library.tc
+#include lrblib.tc
+
+// 3/4 / 9/5 = 15/36
+// 3/4 * 9/5 = 27/20
+// 3/4 + 9/5 = (15+36)/(4*5) = 51/20
+// 3/4 - 9/5 = (15-36)/(4*5) = -21/20
+
+// decimal numbers, i.e. floats, are represented as a pair of integers, the
+// numerator and the denominator
+
+// e.g. 1.8 is 9/5
+
+// 271/136 * 113/117 = 30623/15912 = 1.992647059 * .9658119658 = 1.924522373
+
+// https://keisan.casio.com/calculator
+
+pmdiv int dec1(0),dec2(0),result(0) [ // poor man's divide
+ result(0)=dec1(0)*dec2(1)
+ result(1)=dec1(1)*dec2(0)
+ ]
+
+pmmul int dec1(0),dec2(0),result(0) [ // poor man's multiply
+ result(0)=dec1(0)*dec2(0)
+ result(1)=dec1(1)*dec2(1)
+ ]
+
+pmadd int dec1(0),dec2(0),result(0) [ // poor man's add
+ result(0)=dec2(1)*dec1(0)+dec1(1)*dec2(0)
+ result(1)=dec1(1)*dec2(1)
+ ]
+
+pmsub int dec1(0),dec2(0),result(0) [ // poor man's subtract
+ result(0)=dec2(1)*dec1(0)-dec1(1)*dec2(0)
+ result(1)=dec1(1)*dec2(1)
+ ]
+
+main [
+ printf "%cpmdiv.tc - lrb - 11/18/18%c%c",10,10,10
+ int arg1(1),arg2(1),result(1)
+
+ arg1(0)=3;arg1(1)=4
+ arg2(0)=9;arg2(1)=5
+ pmdiv arg1,arg2,result
+ pn result(0)
+ pn result(1)
+ putchar 10
+ pmmul arg1,arg2,result
+ pn result(0)
+ pn result(1)
+ putchar 10
+ pmadd arg1,arg2,result
+ pn result(0)
+ pn result(1)
+ putchar 10
+ pmsub arg1,arg2,result
+ pn result(0)
+ pn result(1)
+ putchar 10
+
+ arg1(0)=271;arg1(1)=136
+ arg2(0)=113;arg2(1)=117
+
+ pmmul arg1,arg2,result
+ pn result(0)
+ pn result(1)
+ putchar 10
+
+ pn result(0)/result(1)
+ dpf result(0)%result(1),result(1),70
+ putchar 10
+ ]
+

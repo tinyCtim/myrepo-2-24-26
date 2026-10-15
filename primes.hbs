@@ -1,0 +1,57 @@
+   RD        GET UPPER LIMIT.
+   ST   N1
+   L    ON
+   ST   J1   J <- 1
+   A    ON
+   ST   A1   A(1) <- 2
+   PT        PRINT 2, FIRST
+   A    ON   PRIME.
+   ST   I1   I <- 3
+IL L    ON   I LOOP
+   ST   K1   K <- 1
+KL L    LA   K LOOP.  LOAD
+   A    K1   LOAD A.
+   S    ON
+   ST   L1
+L1 DS        AC  <- A(K)
+   ST   SV   SAVE IT.
+   L    I1
+   D    SV
+   M    SV
+   D    I1
+   BRP  BI   IF I/A(K)=
+   L    SV   INT(I/A(K))
+   M    SV   THEN BUMP I.
+   S    I1
+   BRP  BJ   IF A(K) > SQR(I)
+   L    K1   THEN BUMP J.
+   A    ON
+   ST   K1   K <- K+1
+   S    J1
+   BRNP KL
+BJ L    J1   BUMP J.
+   A    ON
+   ST   J1   J <- J+1
+   L    SA   LOAD STORE A.
+   A    J1
+   S    ON
+   ST   L2
+   L    I1   AC  <- I
+   PT        PRINT I, PRIME.
+L2 DS        A(J) <- I
+BI L    I1   BUMP I BY 2.
+   A    TW
+   ST   I1   I <- I + 2
+   S    N1
+   BRNP IL
+   STOP      STOP
+LA L    A1   LOAD A
+SA ST   A1   STORE A
+TW DW   +002 THE VALUE 2.
+ON DW   +001 THE VALUE 1.
+J1 DS        J
+K1 DS        K
+I1 DS        I
+SV DS        SAVE AREA
+N1 DS        UPPER LIMIT.
+A1 DS        ARRAY A STARTS HERE
