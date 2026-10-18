@@ -1,0 +1,215 @@
+
+             Programs That Generate Their Own Source
+ 
+All  programs that duplicate themselves follow a similar pattern. 
+They somehow get their own source into memory,  display  it,  and 
+then  display it again,  providing on the second pass appropriate 
+"punctuation".
+
+Looking  for  a challenging programming problem for  a  column  I 
+started  in a computer club newsletter,  I found the following in 
+Charles Wetherell's "Etudes for Programmers".
+
+       "Write a program that prints its own source". 
+
+A  few  additional words are given which lay down  the  rules.  A 
+reference is given to an article on the subject. See Reference 1.
+
+Solutions  are given in SNOBOL,  LISP,  FORTRAN and ALGOL in  the 
+article.  Having  compilers for two of these  languages,  I  look 
+forward  to typing the solutions in and tuning them up.  I  found 
+the  problem difficult and was not successful when I first  tried 
+to  solve it in a language called Mouse.  An MBASIC solution  was 
+contributed  by  a  member  of my  computer  club.  It  was  very 
+interesting  to me and ultimately helped me finally get the Mouse 
+solution to work. 
+
+The  original solution in MBASIC (MicroSoft) had a  few  features 
+which  bothered me.  When you ran it,  its screen display was  so 
+fast  and the lines which got printed were often so long that  it 
+was hard to tell what was going on. Since I wanted to publish the 
+solution  in  a newsletter which had narrow columns,  I tried  to 
+figure out what could be done to make it shorter and  "narrower". 
+Along  the  way,  a second program which generated needed  "DATA" 
+statements was worked on.
+
+As  I worked on this program and the Mouse  solution,  it  became 
+clear  to me that the tricky and interesting part to this problem 
+involves  the  cosmetic aspects.  My first Mouse solution  was  a 
+continuous  stream  of characters with no  carriage  return  line 
+feeds.  Mouse doesn't care at all about these things but I do and 
+wanted to figure out how to get the program to generate new lines 
+if and when the source had them. 
+
+The final solution in Mouse only works now because I fixed up the 
+interpreter  itself  in a couple of respects.  Mouse is  a  stack 
+oriented language.  I had to increase the size of the calculation 
+stack as well as tune up the way it recognized one character. The 
+'$'  serves  an important role in this language.  I wanted to  be 
+able  to  use this character as a literal as well as  an  end  of 
+program  indicator and a macro prefix and needed to tweak the Z80 
+interpreter a little to teach it when it was a straight character 
+and when it was something else. 
+
+The  article  mentioned above contains a solution  in  pseudocode 
+which may or may not be useful or interesting to you. Some people 
+like pseudocode,  some hate it.  There's usually a fair amount of 
+work  involved  in  turning pseudocode into  a  running  program. 
+Here's the pseudocode.
+
+Listing 1.  PSEUDOCODE
+
+string = 'print ('string = ') print (open quotes)
+          print (string) print (close quotes) print (string)'
+print ('string = ')
+print (open quotes)
+print (string)
+print (close quotes)
+print (string)
+
+
+As  you  study  the actual solutions below and try  to  solve  it 
+yourself in some other language, think about the code above. 
+
+Here's the solution in Mouse.  Since Mouse is probably not  known 
+to  you,  I  will  discuss the solution in some  detail.  A  full 
+discussion  of  Mouse is not appropriate here.  See  Reference  2 
+below. 
+ 
+Listing 2.  SELFGEN.MSE
+
+#D;#S;v:2p:
+(v.w:
+p.1=["!"'$!'"D0!"]
+(w..'|=w.1-.'|=*
+[p.1=["'|'|"]
+w.2-w:"!"]
+p.1=["'"]
+w..!'w.1-w:
+w.77>^)
+p.1-p:p.^)
+"!@"
+$S78v:
+(w:w.^w.v.:
+v.1+v:)v.1-
+@
+$D0
+'#'D';'#'S';'v':'2'p':'|'|
+'('v'.'w':'|'|
+'p'.'1'='['"'!'"'''$'!'''"'D'0'!'"']'|'|
+'('w'.'.'''|'='w'.'1'-'.'''|'='*'|'|
+'['p'.'1'='['"'''|'''|'"']'|'|
+'w'.'2'-'w':'"'!'"']'|'|
+'p'.'1'='['"'''"']'|'|
+'w'.'.'!'''w'.'1'-'w':'|'|
+'w'.'7'7'>'^')'|'|
+'p'.'1'-'p':'p'.'^')'|'|
+'"'!'@'"'|'|
+'$'S'7'8'v':'|'|
+'('w':'w'.'^'w'.'v'.':'|'|
+'v'.'1'+'v':')'v'.'1'-'|'|
+'@
+@
+
+Here's  a discussion of the Mouse solution.  Mouse  programs  are 
+easier to write than to read. 
+
+#D  puts the entire program on the calculation stack.  It invokes 
+the $D macro which is simply a bunch of literal characters  which 
+get  pushed on the stack.  #S takes what's in the stack and loads 
+it into memory,  popping the stack character by  character.  When 
+variables  appear in Mouse programs their address in a data  area 
+is put on the stack.  Here,  a hard-coded address of 78 is put on 
+the stack to start $S off. 78 = 3 times 26 and was chosen because 
+it's  big enough not to get in the way of other variables used in 
+the  program.  The  main  program may use  addresses  0  thru  25 
+(corresponding  to the twenty-six letters of the  alphabet).  The 
+macro $S may use the next 26 values. 
+
+When $S is done, the value it returns is saved in the variable v. 
+This  value  is the address of the first character of the  stored 
+program. It will be needed later.
+
+The variable p is set to 2.  The source in memory will be scanned 
+twice and p keeps track of which pass is active.
+
+The outer loop begins with the loading of a work variable w  with 
+the  address  of the first character of the program.  A check  is 
+made to see if it's pass 1 or 2 (p = 2 on pass 1 and = 1 on  pass 
+2). If it's pass 2 a $D0 is printed on a new line.
+
+Next,  the inner loop checks to see if a "||" pair is about to be 
+processed and if so a "||" is printed if it's pass 2.  In general 
+a new line is printed if a "||" is recognized. The memory pointer 
+is decremented by 2 here as well.
+
+If on pass 2, a "'" gets printed. Next the character addressed by 
+w.  is  printed.  This is the key print statement in the program. 
+The  inner loop continues til w.  = 77.  The pass variable  p  is 
+decremented and the next pass begins.
+
+After the two passes are complete a new line is printed and a "@" 
+is printed.
+
+Like  many  computer programs,  this one was not easy to  get  to 
+work. I am very pleased with it now. 
+
+The  MBASIC solution was my guide to the Mouse solution.  Here it 
+is.  While I write this it occurs to me that instead of using the 
+ASCII  codes  which  appear in the DATA statement  it  should  be 
+possible  to use quoted text strings instead.  It would make  the 
+program a lot more readable. 
+
+Listing 3.  SELFGEN.BAS
+
+1 DEF FNS$(A)=MID$(STR$(A),2,LEN(STR$(A))-1)
+2 LN=14:DT$=" DATA ":READ A
+3 FOR K=1 TO A:READ B:IF B<>98 THEN PRINT CHR$(B);
+4 NEXT K
+5 IF B<>98 THEN PRINT
+6 READ A:IF A<>99 THEN 3
+7 RESTORE:READ A
+8 PRINT FNS$(LN) DT$ FNS$(A) CHR$(44);
+9 FOR K=1 TO A:READ B:PRINT FNS$(B);
+10 IF K<>A THEN PRINT CHR$(44);
+11 NEXT K:PRINT:LN=LN+1
+12 READ A:IF A<>99 THEN 8
+13 PRINT FNS$(LN) DT$ FNS$(A)
+14 DATA 21,49,32,68,69,70,32,70,78,83,36,40,65,41,61,77,73,68,36,40,83,98
+15 DATA 21,84,82,36,40,65,41,44,50,44,76,69,78,40,83,84,82,36,40,65,41,98
+16 DATA 4,41,45,49,41
+17 DATA 21,50,32,76,78,61,49,52,58,68,84,36,61,34,32,68,65,84,65,32,34,98
+18 DATA 7,58,82,69,65,68,32,65
+19 DATA 21,51,32,70,79,82,32,75,61,49,32,84,79,32,65,58,82,69,65,68,32,98
+20 DATA 21,66,58,73,70,32,66,60,62,57,56,32,84,72,69,78,32,80,82,73,78,98
+21 DATA 10,84,32,67,72,82,36,40,66,41,59
+22 DATA 8,52,32,78,69,88,84,32,75
+23 DATA 21,53,32,73,70,32,66,60,62,57,56,32,84,72,69,78,32,80,82,73,78,98
+24 DATA 1,84
+25 DATA 21,54,32,82,69,65,68,32,65,58,73,70,32,65,60,62,57,57,32,84,72,98
+26 DATA 4,69,78,32,51
+27 DATA 16,55,32,82,69,83,84,79,82,69,58,82,69,65,68,32,65
+28 DATA 21,56,32,80,82,73,78,84,32,70,78,83,36,40,76,78,41,32,68,84,36,98
+29 DATA 18,32,70,78,83,36,40,65,41,32,67,72,82,36,40,52,52,41,59
+30 DATA 21,57,32,70,79,82,32,75,61,49,32,84,79,32,65,58,82,69,65,68,32,98
+31 DATA 16,66,58,80,82,73,78,84,32,70,78,83,36,40,66,41,59
+32 DATA 21,49,48,32,73,70,32,75,60,62,65,32,84,72,69,78,32,80,82,73,78,98
+33 DATA 11,84,32,67,72,82,36,40,52,52,41,59
+34 DATA 21,49,49,32,78,69,88,84,32,75,58,80,82,73,78,84,58,76,78,61,76,98
+35 DATA 3,78,43,49
+36 DATA 21,49,50,32,82,69,65,68,32,65,58,73,70,32,65,60,62,57,57,32,84,98
+37 DATA 5,72,69,78,32,56
+38 DATA 21,49,51,32,80,82,73,78,84,32,70,78,83,36,40,76,78,41,32,68,84,98
+39 DATA 9,36,32,70,78,83,36,40,65,41
+40 DATA 99
+
+
+Reference  1.    "Etudes  for  Programmers",  Charles  Wetherell, 
+Prentice-Hall Inc., 1978.
+
+Reference  2.  "Mouse, a language for  microcomputers",  Peter 
+Grogono, Petrocelli Books Inc., 1983.
+
+Last updated on 6/22/86, Lee R. Bradley
+
+
