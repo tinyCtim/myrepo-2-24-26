@@ -1,0 +1,90 @@
+#include pps/library.tc
+#include pps/lrblib.tc
+
+// globals
+
+char cell(81*81),dell(81*81),asterisk,space
+int pop
+
+glider [
+ cell(81*40+41)=asterisk
+ cell(81*41+42)=asterisk
+ cell(81*42+40)=asterisk
+ cell(81*42+41)=asterisk
+ cell(81*42+42)=asterisk
+ pop=5
+ ]
+
+birth_death int rp,cp [
+ int rw,cw,counter
+ rw=rp-1
+// no change is default
+ dell(81*rp+cp)=cell(81*rp+cp)
+ while rw<=rp+1 [
+  cw=cp-1
+  while cw<=cp+1 [
+// legal?
+   if ((rw>-1)*(rw<81)*(cw>-1)*(cw<81)) [
+    if (cell(81*rw+cw)==asterisk) counter=counter+1
+    ]
+   cw=cw+1
+   ]
+  rw=rw+1
+  ]
+// birth?
+ if ((cell(81*rp+cp)==space)) [
+  if (counter==3) [dell(81*rp+cp)=asterisk;pop=pop+1]
+  ]
+// death?
+ else [
+  if ((counter<3)+(counter>4)) [dell(81*rp+cp)=space;pop=pop-1]
+  ]
+ ]
+
+cycle [
+ int r,c
+ while r<81 [
+  c=0
+  while c<81 [
+   putchar cell(81*r+c)
+   birth_death r,c
+   c=c+1
+   ]
+  pl ""
+  r=r+1
+  ]
+ ]
+
+init [
+ int r,c
+ while r<81 [
+  c=0
+  while c<81 [
+   cell(81*r+c)=' '
+   c = c+1
+   ]
+  r=r+1 
+  ]
+ ]
+
+main [
+ char datebuff(20)
+ asterisk='*';space=' '
+ init
+ int c,rs,cs,delta,gen,gens
+ int s // seconds to delay
+ pl "glider.tc - lrb - 10/22/26"
+ pl "";pl ""
+ pl "generations? ";gens=gen=gn
+ pl "pause time between generations in seconds? ";s=gn
+ glider
+ while gen [
+  cdate datebuff
+  printf "%c%cpopulation: %d generation: %d time: %s%c%c",10,10,pop,gens-gen+1,datebuff,10,10
+  gen=gen-1
+  sleep s
+// display and update the array
+  cycle;strcpy cell,dell
+  ]
+ ]
+
