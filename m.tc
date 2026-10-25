@@ -30,6 +30,7 @@ m [
  cell(dim*(c+3)+c+0)=asterisk
  cell(dim*(c+3)+c+3)=asterisk
  cell(dim*(c+3)+c+6)=asterisk
+ pop=14
  ]
 
 acorn [
@@ -116,7 +117,7 @@ main [
  init
  int gen,gens
  int s // seconds to delay
- pl "m.tc - lrb - 10/23/26"
+ pl "m.tc - lrb - 10/24/26"
  pl "";pl ""
  pl "generations? ";gens=gen=gn
  pl "pause time between generations in seconds? ";s=gn
