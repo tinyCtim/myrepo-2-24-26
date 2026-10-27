@@ -1,0 +1,10 @@
+
+// cursoron.tc - 10/27/26 - lrb
+
+main [
+ char esc;esc=27
+ char lb;lb=91
+ putchar esc;putchar lb
+ ps "?25h" // show cursor
+ ]
+
