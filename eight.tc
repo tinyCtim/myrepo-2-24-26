@@ -157,7 +157,7 @@ main [
  pl "";pl ""
  pl "generations? ";gens=gen=gn
  pl "pause time between generations in seconds? ";s=gn
- pl "1 is a glider 2 is the acorn 3 is the letter m"
+ pl "1 is a glider 2 is the acorn 3 is the letter m 4 is the figure 8"
  pl "which pattern do you want to run (1..4) ? ";n=gn
  if n==1 glider()
  if n==2 acorn()
