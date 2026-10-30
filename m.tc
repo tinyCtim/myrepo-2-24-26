@@ -14,7 +14,6 @@ int pop,dim
 ]
 
 m [
- int r;r=dim
  int c;c=(dim-1)/2
  cell(dim*(c+0)+c+0)=asterisk
  cell(dim*(c+0)+c+6)=asterisk
@@ -34,7 +33,6 @@ m [
  ]
 
 acorn [
- int r;r=dim
  int c;c=(dim-1)/2
  cell(dim*(c+0)+c+1)=asterisk
  cell(dim*(c+1)+c+3)=asterisk
@@ -47,7 +45,6 @@ acorn [
  ]
 
 glider [
- int r;r=dim
  int c;c=(dim-1)/2
  cell(dim*(c+0)+c+1)=asterisk
  cell(dim*(c+1)+c+2)=asterisk
@@ -112,7 +109,8 @@ init [
 main [
  char datebuff(20)
  int n
- asterisk='*';space=' '
+ asterisk='*'
+ space=' '
  pl "dimensions of the board e.g. 81 for 81x81 ? ";dim=gn
  init
  int gen,gens

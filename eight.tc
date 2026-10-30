@@ -16,7 +16,6 @@ int pop,dim
 ]
 
 eight [
- int r;r=dim
  int c;c=(dim-1)/2
  cell(dim*(c+0)+c+0)=asterisk
  cell(dim*(c+0)+c+1)=asterisk
@@ -49,7 +48,6 @@ eight [
 ]
 
 m [
- int r;r=dim
  int c;c=(dim-1)/2
  cell(dim*(c+0)+c+0)=asterisk
  cell(dim*(c+0)+c+6)=asterisk
@@ -69,7 +67,6 @@ m [
  ]
 
 acorn [
- int r;r=dim
  int c;c=(dim-1)/2
  cell(dim*(c+0)+c+1)=asterisk
  cell(dim*(c+1)+c+3)=asterisk
@@ -82,7 +79,6 @@ acorn [
  ]
 
 glider [
- int r;r=dim
  int c;c=(dim-1)/2
  cell(dim*(c+0)+c+1)=asterisk
  cell(dim*(c+1)+c+2)=asterisk
@@ -153,7 +149,7 @@ main [
  init
  int gen,gens
  int s // seconds to delay
- pl "eight.tc - lrb - 10/27/26"
+ pl "eight.tc - lrb - 10/30/26"
  pl "";pl ""
  pl "generations? ";gens=gen=gn
  pl "pause time between generations in seconds? ";s=gn
