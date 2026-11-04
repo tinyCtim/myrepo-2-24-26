@@ -154,7 +154,7 @@ main [
  init
  int gen,gens
  int s // seconds to delay
- pl "eight.1.tc - lrb - 11/2/26"
+ pl "eight.1.tc - lrb - 11/4/26"
  pl "";pl ""
  pl "generations? ";gens=gen=gn
  pl "pause time between generations in seconds? ";s=gn
@@ -168,6 +168,7 @@ main [
  char lb;lb=91
  putchar esc;putchar lb
  ps "?25l" // hide cursor
+ last=seed=99 // this is default value when not initialized
  while gen [
   cdate datebuff
   printf "%c%cpopulation: %d generation: %d time: %s%c%c",10,10,pop,gens-gen+1,datebuff,10,10
