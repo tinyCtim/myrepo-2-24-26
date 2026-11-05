@@ -76,12 +76,12 @@ main [
  pl "enter a number to specify how long the line is e.g. 13 : ";pop=delta=gn
  pl "enter a number between 0 and 9 for seconds to pause between generations : ";s=gn
  pl "what's your favorite color 1=red 2=green 3=yellow 4=blue 5=magenta 6=cyan : ";fc=gn;fc=fc+'0'
- cs=rs-delta
+ cs=rs-delta/2
 // initialize w/ spaces
  cycle 0
 // load the row
  c=cs
- while c<=rs+delta [
+ while c<=rs+delta/2 [
   cell(dim*rs+c)=asterisk
   c=c+1
   ]
