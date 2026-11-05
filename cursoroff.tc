@@ -1,0 +1,8 @@
+
+main [cursoroff]
+ 
+cursoroff [
+ MC '\'-'A',1;MC '\'-1,1;MC '?',1;MC '2',1;MC '5',1
+ MC 'l',1
+ ]
+ 
