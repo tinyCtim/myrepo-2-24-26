@@ -1,8 +1,13 @@
 #include pps/library.tc
 #include pps/lrblib.tc
 
+// globals
+
 char cell(101*101),dell(101*101),asterisk,space
 int work,s,dim
+char magenta
+int fc // favorite color
+int pop // population
 
 birth_death int rp,cp [
  int rw,cw,counter
@@ -22,11 +27,11 @@ birth_death int rp,cp [
   ]
 // birth?
  if ((cell(dim*rp+cp)==space)) [
-  if (counter==3) dell(dim*rp+cp)=asterisk
+  if (counter==3) [dell(dim*rp+cp)=asterisk;pop=pop+1]
   ]
 // death?
  else [
-  if ((counter<3)+(counter>4)) dell(dim*rp+cp)=space
+  if ((counter<3)+(counter>4)) [dell(dim*rp+cp)=space;pop=pop-1]
   ]
  ]
 
@@ -39,7 +44,7 @@ cycle int foo [
    else [
     if work [
      bar=random(0,1)
-     if bar color '4'
+     if bar color fc
      else color '7'
      ]
     putchar cell(dim*r+c)
@@ -62,13 +67,15 @@ main [
  work=1 // force it
  if work [on;color '4';hilo '1']
  pl "simple_life.tc - lrb - 11/5/26"
+ magenta='5' // per CL
  if work color '7'
  pl "";pl ""
  asterisk='*';space=' '
- pl "enter dimensions of board e.g. 27 for 27x27 : ";dim=gn
+ pl "enter dimensions of board e.g. 57 for 57x57 : ";dim=gn
  rs=(dim-1)/2+1
- pl "enter a number to specify how long the line is e.g. 13 : ";delta=gn
+ pl "enter a number to specify how long the line is e.g. 13 : ";pop=delta=gn
  pl "enter a number between 0 and 9 for seconds to pause between generations : ";s=gn
+ pl "what's your favorite color 1=red 2=green 3=yellow 4=blue 5=magenta 6=cyan : ";fc=gn;fc=fc+'0'
  cs=rs-delta
 // initialize w/ spaces
  cycle 0
@@ -81,7 +88,7 @@ main [
  pl "how many generations do you want to see? ";gens=gen=gn
  if work off
  while gen [
-  pl "";ps "gen";pn gens-gen+1;pl ""
+  printf("%cgeneration %d population %d%c",10,gens-gen+1,pop,10)
   gen=gen-1
   sleep s
 // display and update the array
