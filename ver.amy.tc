@@ -58,8 +58,8 @@ ver char v(0) [
  printf ", %s",tcbuff
  char mydate(20);cdate mydate
  printf "%cThe current date and time is %s",10,mydate,10
-// int pi;printf "%cEnter a number : ",10;pi=gn
- int pi; pi = 31415
+ int pi;printf "%cEnter a number : ",10;pi=gn
+// int pi; pi = 31415
  char table(30);strcpy table,"tiny-C rocks!"
  printf "%cA number and a message for the day follow.%c%c",10,10,10
  printf "%15d",pi
@@ -70,8 +70,10 @@ ver char v(0) [
   url(1,u);printf "%c%s",10,u
   lrblibver
   char yellow;yellow='3'
+  char green;green='2'
+  sak
   // ANSI escape sequences are supported under Linux
-//  if (index(os,strlen(os),"Linux",5)) color yellow
+  if (index(os,strlen(os),"Linux",5)) color green
 //  color '4' // blue
   printf "%c%chttp://primepuzzle.com/not.just.tiny.c/ver.amy.tc%c%c",10,10,10,10
   char white;white='7'
