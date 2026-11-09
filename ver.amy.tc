@@ -67,13 +67,14 @@ ver char v(0) [
  if pi==31415 [
   printf "%c%cUsing functions from the libraries%c",10,10,10
   char u(100)
-  url(1,u);printf "%c%s",10,u
+  url(0,u);printf "%c%s",10,u
   lrblibver
   char yellow;yellow='3'
   char green;green='2'
   sak
   // ANSI escape sequences are supported under Linux
   if (index(os,strlen(os),"Linux",5)) color green
+  color green
 //  color '4' // blue
   printf "%c%chttp://primepuzzle.com/not.just.tiny.c/ver.amy.tc%c%c",10,10,10,10
   char white;white='7'
