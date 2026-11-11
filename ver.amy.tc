@@ -37,7 +37,7 @@ main [
  ]
 
 ver char v(0) [
- printf "%cver.tc - lrb - 6/9/21%c",10,10
+ printf "%cver.amy.tc - lrb - 6/9/21%c",10,10
  char tcbuff(40)
  printf "%cThe tiny-C build date is ",10
  getproperty "pps/version.prop","date =",tcbuff,40,"..."
@@ -65,7 +65,7 @@ ver char v(0) [
  printf "%15d",pi
  printf "%c%15s%c",10,table,10
  if pi==31415 [
-  printf "%c%cUsing functions from the libraries%c",10,10,10
+  printf "%c%cUsing functions from two #include libraries%c",10,10,10
   char u(100)
   url(0,u);printf "%c%s",10,u
   lrblibver
