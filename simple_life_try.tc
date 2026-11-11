@@ -66,22 +66,22 @@ main [
  // work=index(tcbuff,strlen(tcbuff),"Linux",5)
  work=1 // force it
  if work [on;color '4';hilo '1']
- pl "simple_life.tc - lrb - 11/5/26"
+ pl "simple_life.try.tc - lrb - 11/11/26"
  magenta='5' // per CL
  if work color '7'
  pl "";pl ""
  asterisk='*';space=' '
  pl "enter dimensions of board e.g. 57 for 57x57 : ";dim=gn
- rs=(dim-1)/2+1
+ rs=(dim-1)/2+1 // row start
  pl "enter a number to specify how long the line is e.g. 13 : ";pop=delta=gn
  pl "enter a number between 0 and 9 for seconds to pause between generations : ";s=gn
  pl "what's your favorite color 1=red 2=green 3=yellow 4=blue 5=magenta 6=cyan : ";fc=gn;fc=fc+'0'
- cs=rs-delta/2
+ cs=(dim-delta)/2  // column start
 // initialize w/ spaces
  cycle 0
 // load the row
  c=cs
- while c<=rs+delta/2 [
+ while c<cs+delta [
   cell(dim*rs+c)=asterisk
   c=c+1
   ]
