@@ -5,7 +5,7 @@
 
 char cell(101*101),dell(101*101),asterisk,space
 int work,s,dim
-char magenta,white,cyan,green
+char magenta,white,cyan,green,blue,red
 int fc // favorite color
 int pop // population
 
@@ -65,9 +65,9 @@ main [
  getproperty "pps/version.prop","os =",tcbuff,40,"..."
  // work=index(tcbuff,strlen(tcbuff),"Linux",5)
  work=1 // force it
- if work [on;color '4';hilo '1'] // turn cursor on and turn hiliting on
- pl "simple_life.try.tc - lrb - 11/15/26"
- white='7';cyan='6';magenta='5';green='2'
+ white='7';cyan='6';magenta='5';green='2';red='1';blue='4'
+ if (work) [on;color(blue);hilo('1')] // turn cursor on and turn hiliting on
+ pl "simple_life.try.tc - lrb - 11/19/26"
  if (work) color (white) // white
  asterisk='*';space=' '
  printf ("%c%center dimensions of board ( < 100 ) e.g. 57 for 57x57 : ",10,10);dim=gn
@@ -77,7 +77,7 @@ main [
  pl "what's your favorite color 1=red 2=green 3=yellow 4=blue 5=magenta 6=cyan : ";fc=gn;fc=fc+'0'
  cs=(dim-delta)/2  // column start
 // initialize w/ spaces
- cycle (0)
+ cycle(0)
 // load the row
  c=cs
  while (c < cs+delta) [
@@ -85,17 +85,22 @@ main [
   c=c+1
   ]
  pl "how many generations do you want to see? ";gens=gen=gn
+ printf("%cwhat do you want to name the output data file, e.g. pop23.dat ",10)
+ char fn(15)
+ gs(fn)
  if (work) off // turn cursor off
- int unit;unit=fopen("pop.dat","w")
+ int unit;unit=fopen(fn,"w")
+ MC(gen,unit,118) // first line in output file is number of generations
+ fputc(10,unit) // newline
  while (gen) [
   printf("%cgeneration %d population %d%c",10,gens-gen+1,pop,10)
-  fpn (pop,unit) // update pop.dat
-  fputc (10,unit)
+  MC(pop,unit,118) // write pop value, no leading space
+  fputc(10,unit) // newline
   gen=gen-1
-  sleep (s)
+  sleep(s)
 // display and update the array
-  cycle (1);strcpy cell,dell
+  cycle(1);strcpy cell,dell
   ]
- if (work) [on;color (white)] // turn cursor on and set color to white
- fclose (unit);printf("%cpop.dat written!",10)
+ if (work) [on;color(white)] // turn cursor on and set color to white
+ fclose(unit);printf("%c%s written!",10,fn)
  ]
