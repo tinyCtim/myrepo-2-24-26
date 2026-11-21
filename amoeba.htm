@@ -1,0 +1,96 @@
+
+<html>
+
+<!-- amoeba.htm - lrb - 9/25/12 -->
+
+<head>
+
+<link rel="icon" type="image/x-icon"
+href="http://primepuzzle.com/tc/amoeba.25.jpg">
+</link>
+
+<title>Amoeba Simulation</title>
+
+</head>
+
+<script>
+
+function foo(frm) {
+ c=gtot=0;bar="";sn=frm.gens.value
+ if (sn>30) {
+  frm.out.value="\nEnter a number from 1 to 30."
+  }
+ else {
+  for (i=1;i<=10;++i) {
+   n=sn;p=1
+   while ((n--)*p) {
+    psp=0;for (pp=1;pp<=p;++pp) psp=psp+Math.floor(4*Math.random())
+    p=psp
+    }
+   bar+="\n" + i + ".  " + Math.floor(p) + " amoebas survived,"
+   bar+=" and went for " + Number(sn-n-1) + " generation(s)."
+   if (p) gtot+=p; else ++c
+  }
+  sum="\n" + gtot/10 + " on average survived."
+  sum+="\n" + Math.floor(Math.pow(1.5,sn)) + " is the expected value."
+  sum+="\nExtinction percentage was " + c*10 + ".\n"
+  frm.out.value=sum+bar
+ }}
+
+</script>
+
+<body>
+
+<table align=center width=89%><tr><td>
+
+<form>
+
+<br><b><a href=http://primepuzzle.com/tc/amoeba.htm>Amoeba simulation</a>
+
+<p>
+
+An amoeba either dies, lives, splits into two or splits into three, each
+with probability 1/4. It can be proved that (1.5)<sup>n</sup> is the
+expected number of amoebas after n generations and that a family tree
+becomes extinct about 41.4 percent of the time (<a
+href=http://primepuzzle.com/tc/amoeba.html>proof</a>). Starting w/ 1
+amoeba, we let the amoebas split for up to the specified number of
+generations.
+
+<p>
+
+Enter desired number of generations:  <input name="gens" type="text"
+value="10" size=1>
+
+<p>
+
+<button type="button" onClick="foo(this.form)">
+
+<p>
+
+Click Andy the Amoeba
+
+<p>
+
+<img src=amoeba.25.jpg>
+
+<p>
+
+to run the simulation!
+
+</button>
+
+<p>
+
+<textarea name="out" rows="25" cols="70"></textarea>
+
+</b>
+
+</form>
+
+</td></tr></table>
+
+</body>
+
+</html>
+
