@@ -9,19 +9,20 @@
 amoeba.c - lrb - 9/25/12
 
 An amoeba either dies, lives, splits into two or splits into three, each
-with probability 1/4. It can be proved that (1.5)^n is the expected
+with probability 0.25. It can be proved that (1.5)^n is the expected
 number of amoebas after n generations and that a family tree becomes
 extinct about 41.4 percent of the time. Starting w/ 1 amoeba, we let the
-amoebas split for up to the specified number of generations.
+amoebae split for up to the specified number of generations.
 
-Ref: http://primepuzzle.com/tc/amoeba.html
+Ref: http://primepuzzle.com/not.just.tiny.c/amoeba.html
+
 */
 
 static int rnd_seed;
 
 void usage() {
- printf("\namoeba.c - lrb - 9/25/2012");
- printf("\nUsage: amoeba [-b] [-g generations] [-s simulations] \n");
+ printf("\namoeba.c - lrb - 11/22/2026");
+ printf("\nUsage: amoeba [-b] [-g generations] [-s simulations] [-r seed]\n");
  exit(1);
  }
 
@@ -60,5 +61,5 @@ int main(int argc,char *argv[]) {
  printf("\n\n%u populations died out.",c);
  printf("\n%u",(unsigned int)((double)sims*(pow(2,0.5)-1)));
  printf(" is the expected number to die out.\n");
- return 0;
+ return(0);
  }
